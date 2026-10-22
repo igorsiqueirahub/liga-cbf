@@ -11,5 +11,5 @@ Mesmo modelo do painel `dividas-clubes`: visual vermelho/preto, Figtree, altura 
 ## Como embedar
 
 Copie o conteúdo de [`embed.html`](embed.html) para o código-fonte da sua página.
-Aba no `#`: `#tempo` (padrão), `#calendario`, `#atletas`, `#horarios`, `#contexto`
+Aba no `#`: `#atletas` (padrão), `#horarios`, `#tempo`, `#calendario`, `#contexto`
 (`#aba=horarios` também funciona).
