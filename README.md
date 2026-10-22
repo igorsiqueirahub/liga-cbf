@@ -1,6 +1,6 @@
 # Liga do Futebol do Brasil – 4ª reunião
 
-Página: https://igorsiqueirahub.github.io/liga-cbf-/
+Página: https://igorsiqueirahub.github.io/liga-cbf/
 
 Página interativa para embed (iframe) com os dados da apresentação da CBF na 4ª Reunião da
 Liga do Futebol do Brasil (setembro de 2026): tempo de jogo, calendário 2026, inscrição de
