@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fair Play Financeiro</title>
+<meta name="description" content="O balanço do primeiro ano do Fair Play Financeiro apresentado pela ANRESF aos clubes, o que não funcionou em 2026 e as propostas: o Novo PARF-B para a Série B e a perda de pontos por salário atrasado nas Séries A e B a partir de 2028.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..900&display=swap" rel="stylesheet">
+<style>
+
+/* Mesmo sistema do painel de dívidas (tema vermelho): vermelho, preto e branco, cantos retos, Figtree */
+:root{--vermelho:#CB0003;--vermelho-claro:#FF7366;--tinta:#000;--texto:#1A1A1A;--mudo:#4D4D4D;--fraco:#767676;--linha:#E6E6E6;--cinza:#F2F2F2;--trilho:#EDEDED;--escuro:#1A1A1A;--fundo:#fff;--antigo:#A6A6A6;--verde:#1E7A4C;--verde-bg:#DCEFE4;--verm-bg:#F9DEDD;color-scheme:light}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--fundo)}
+body{font-family:"Figtree",Arial,Helvetica,sans-serif;color:var(--texto);-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+.wrap{max-width:1136px;margin:0 auto;padding:32px max(32px,env(safe-area-inset-right,0px)) 40px max(32px,env(safe-area-inset-left,0px))}
+html.em-iframe .wrap{padding:16px 2px}
+html.em-iframe body{border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
+h1{font-size:clamp(30px,4.2vw,48px);line-height:1.04;letter-spacing:-.03em;font-weight:800;color:var(--tinta);margin:0;text-wrap:balance}
+h1 span{color:var(--vermelho);display:block}
+.abre{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px 48px;align-items:start;margin-bottom:24px}
+.lede{font-size:17px;line-height:1.6;margin:4px 0 0}
+.metas{display:flex;flex-wrap:wrap;gap:8px;border:1px solid var(--linha);border-radius:4px;padding:16px 24px;margin-bottom:16px;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:8px;background:var(--cinza);border-radius:4px;padding:7px 12px;font-size:14px;font-weight:600;color:var(--texto)}
+.chip svg{width:15px;height:15px;color:var(--vermelho);flex:none}
+.chip.voto{background:#fff;border:1px solid var(--vermelho);color:var(--vermelho)}
+.placar{background:var(--escuro);color:#fff;border-radius:4px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.pl{padding:24px 24px 22px;position:relative;display:flex;flex-direction:column;gap:8px}
+.pl+.pl:before{content:"";position:absolute;left:0;top:28px;bottom:28px;width:1px;background:#3A3A3A}
+.pl .n{font-size:clamp(28px,3.2vw,36px);font-weight:800;letter-spacing:-.03em;line-height:1}
+.pl .t{font-size:14px;line-height:1.45;color:#D6D6D6;flex:1}
+.pl a{color:var(--vermelho-claro);font-size:14px;font-weight:600;text-decoration:none}
+.pl a:hover{text-decoration:underline}
+.nav{margin-top:36px;border-top:2px solid var(--tinta);border-bottom:1px solid var(--linha);position:relative}
+.nav:after{content:"";position:absolute;right:0;top:0;bottom:0;width:40px;background:linear-gradient(90deg,rgba(255,255,255,0),#fff);pointer-events:none;opacity:0;transition:opacity .15s}
+.nav.mais:after{opacity:1}
+.abas{display:flex;overflow-x:auto;scrollbar-width:none;gap:4px;min-width:0}
+.abas::-webkit-scrollbar{display:none}
+.abas button{all:unset;cursor:pointer;white-space:nowrap;font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--mudo);padding:16px 11px 14px;border-bottom:3px solid transparent;display:inline-flex;align-items:center;gap:6px}
+.abas button[aria-selected=true]{color:var(--tinta);border-bottom-color:var(--vermelho)}
+.abas button:focus-visible,.seg button:focus-visible,.btn-link:focus-visible,.pl a:focus-visible{outline:2px solid var(--vermelho);outline-offset:2px}
+.abas .tag{font-size:10px;letter-spacing:.4px;background:var(--vermelho);color:#fff;border-radius:3px;padding:2px 5px}
+.btn-link{all:unset;cursor:pointer;margin-left:auto;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--linha);border-radius:4px;padding:7px 12px;font-size:14px;font-weight:500;white-space:nowrap;flex:none}
+.btn-link svg{width:15px;height:15px}
+.painel{padding-top:32px}
+.frase{font-size:clamp(22px,2.8vw,32px);line-height:1.25;letter-spacing:-.02em;font-weight:500;color:var(--tinta);margin:0 0 12px;max-width:1000px;text-wrap:balance}
+.frase b{color:var(--vermelho);font-weight:800}
+.data{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--linha);border-radius:4px;padding:6px 12px;font-size:14px;font-weight:600}
+.data-linha{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:14px;color:var(--mudo)}
+.secao{margin-top:44px}
+.secao h2{font-size:clamp(22px,2.6vw,28px);letter-spacing:-.02em;line-height:1.15;margin:0 0 6px;color:var(--tinta);text-wrap:balance}
+.secao h2 .rot-voto{display:inline-block;vertical-align:middle;font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--vermelho);margin-left:6px;font-weight:700}
+.secao .sub{font-size:15px;line-height:1.5;color:var(--mudo);margin:0 0 16px;max-width:820px}
+.etq{font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--vermelho);display:flex;align-items:center;gap:8px;margin:0 0 8px}
+.etq:before{content:"";width:8px;height:8px;background:var(--vermelho)}
+.ctrl{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;margin:0 0 14px}
+.ctrl>span{font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--mudo)}
+.seg{display:inline-flex;border:1px solid var(--linha);border-radius:4px;padding:3px;gap:3px;background:#fff;flex-wrap:wrap}
+.seg button{all:unset;cursor:pointer;font:inherit;font-size:14px;font-weight:500;padding:7px 13px;border-radius:4px;color:var(--texto)}
+.seg button[aria-pressed=true]{background:#000;color:#fff;font-weight:600}
+.caixa{border:1px solid var(--linha);border-radius:4px;padding:20px 20px 14px}
+.grafico{position:relative;width:100%}
+.grafico svg{display:block;width:100%;height:auto;overflow:visible}
+.leg{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--mudo);margin:0 0 10px}
+.leg i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.leg i.ln{height:3px;width:16px;vertical-align:3px;border-radius:0}
+.leg i.band{background:var(--cinza);border:1px solid var(--linha)}
+.nota{font-size:14px;line-height:1.6;color:var(--mudo);margin:12px 0 0;max-width:860px}
+.nota b{color:var(--texto)}
+.duas{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.tile{border:1px solid var(--linha);border-radius:4px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:6px}
+.tile .n{font-size:32px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--tinta)}
+.tile .n.red{color:var(--vermelho)}
+.tile .t{font-size:14px;line-height:1.45;color:var(--texto);font-weight:600}
+.tile .d{font-size:13px;line-height:1.45;color:var(--mudo)}
+/* ranking em barras (mesmo desenho da página de transferências) */
+.rk{list-style:none;margin:0;padding:0;border:1px solid var(--linha);border-radius:4px}
+.rk li{display:grid;grid-template-columns:minmax(96px,190px) minmax(0,1fr) 84px;align-items:center;gap:12px;padding:8px 16px;border-top:1px solid var(--linha)}
+.rk li:first-child{border-top:0}
+.rk.c4 li{grid-template-columns:minmax(96px,190px) minmax(0,1fr) 84px 92px}
+.rk .nm{font-weight:700;font-size:15px;color:var(--tinta)}
+.rk .nm small{display:block;font-weight:500;font-size:12px;color:var(--mudo)}
+.rk .tr{height:14px;background:var(--trilho);border-radius:0 4px 4px 0;position:relative}
+.rk .br{position:absolute;left:0;top:0;bottom:0;background:var(--escuro);border-radius:0 4px 4px 0;min-width:2px}
+.rk li.dest .br{background:var(--vermelho)}
+.rk li.dest .nm{color:var(--vermelho)}
+.rk li.ref .br{background:var(--antigo)}
+.rk .v{font-weight:700;font-size:15px;text-align:right;white-space:nowrap}
+.rk .p{font-size:14px;color:var(--mudo);text-align:right;white-space:nowrap}
+.rk .p.neg{color:var(--vermelho);font-weight:600}
+.cab-rk{display:grid;grid-template-columns:minmax(96px,190px) minmax(0,1fr) 84px;gap:12px;padding:0 16px 6px;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--mudo)}
+.cab-rk.c4{grid-template-columns:minmax(96px,190px) minmax(0,1fr) 84px 92px}
+.cab-rk span:nth-child(n+3){text-align:right}
+/* pares antes/depois */
+.par{display:grid;grid-template-columns:110px minmax(0,1fr) 92px;gap:6px 14px;align-items:center;padding:12px 0;border-top:1px solid var(--linha)}
+.par:first-of-type{border-top:0}
+.par .nm{font-weight:700;font-size:15px;color:var(--tinta)}
+.par .bs{display:flex;flex-direction:column;gap:4px}
+.par .b{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mudo)}
+.par .b i{display:block;height:14px;border-radius:0 4px 4px 0;background:var(--antigo)}
+.par .b.novo i{background:var(--vermelho)}
+.par .b.novo{color:var(--tinta);font-weight:700}
+.par .dl{text-align:right;font-weight:800;font-size:18px;color:var(--vermelho)}
+/* tabela genérica */
+.tw{overflow-x:auto;border:1px solid var(--linha);border-radius:4px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:10px 12px;text-align:left;border-top:1px solid var(--linha);vertical-align:middle}
+thead th{border-top:0;background:var(--cinza);font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--mudo)}
+tbody th{font-weight:700;color:var(--tinta)}
+td.num,th.num{text-align:right}
+.st{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600}
+.st i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.st.crit i{background:var(--vermelho)}.st.at i{background:#E0A100}
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 7px;border-radius:3px;background:var(--escuro);color:#fff}
+.mute{color:var(--fraco)}
+/* mapa de calor */
+.calor td{text-align:center;font-weight:700;font-size:14px;padding:8px 6px;min-width:64px}
+.calor td small{display:block;font-weight:500;font-size:11px;opacity:.75}
+.calor tbody th{white-space:nowrap;font-size:13px}
+.calor tr.grupo th{background:#fff;font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--vermelho);padding-top:14px}
+.escala{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mudo);margin:10px 0 0}
+.escala span.g{display:inline-block;width:140px;height:10px;border-radius:2px;background:linear-gradient(90deg,#CB0003,#F9DEDD 45%,#fff 50%,#DCEFE4 55%,#1E7A4C)}
+/* barras empilhadas */
+.pilha{display:flex;flex-direction:column;gap:8px}
+.pilha .lin{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;align-items:center}
+.pilha .nm{font-weight:700;font-size:14px;color:var(--tinta)}
+.pilha .nm small{display:block;font-weight:500;color:var(--mudo);font-size:12px}
+.pilha .bar{display:flex;height:26px;gap:2px}
+.pilha .bar i{display:flex;align-items:center;justify-content:center;font-style:normal;font-size:12px;font-weight:700;color:#fff;overflow:hidden;white-space:nowrap}
+.pilha .bar i:first-child{border-radius:4px 0 0 4px}.pilha .bar i:last-child{border-radius:0 4px 4px 0}
+.pilha.dest .lin.br .nm{color:var(--vermelho)}
+/* divergente (impacto no público) */
+.div{display:flex;flex-direction:column}
+.div .lin{display:grid;grid-template-columns:120px minmax(0,1fr) minmax(0,1fr);gap:0 10px;align-items:center;padding:8px 0;border-top:1px solid var(--linha)}
+.div .lin:first-child{border-top:0}
+.div .nm{font-weight:700;font-size:14px}
+.div .esq{display:flex;justify-content:flex-end;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--vermelho)}
+.div .dir{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--verde)}
+.div .esq i{height:16px;background:var(--vermelho);border-radius:4px 0 0 4px;display:block}
+.div .dir i{height:16px;background:var(--verde);border-radius:0 4px 4px 0;display:block}
+.div .cab{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--mudo)}
+/* grade de horários */
+.grade{border-collapse:separate;border-spacing:4px;font-size:14px;width:100%;min-width:420px}
+.grade th,.grade td{border:0;padding:0;text-align:center}
+.grade thead th{background:var(--escuro);color:#fff;padding:8px 6px;border-radius:3px;font-size:12px}
+.grade tbody th{background:var(--cinza);color:var(--tinta);font-size:13px;padding:0 10px;border-radius:3px;white-space:nowrap;width:70px}
+.grade td{height:44px;background:#FAFAFA;border-radius:3px}
+.grade td b{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;border-radius:3px;font-size:17px;font-weight:800}
+.grade td b small{font-size:10px;letter-spacing:.4px;text-transform:uppercase;font-weight:700}
+.g-anc{background:var(--vermelho);color:#fff}
+.g-reg{background:#F08A84;color:#fff}
+.g-alt{background:#fff;color:var(--vermelho);outline:2px dashed var(--vermelho);outline-offset:-2px}
+.g-res{background:var(--cinza);color:var(--mudo);font-size:13px!important}
+.g-coi{background:#fff;color:var(--tinta);outline:2px solid var(--tinta);outline-offset:-2px}
+.grade-wrap>*{min-width:0}
+.grade-wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px;align-items:start}
+.princ{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;font-size:14px;line-height:1.55}
+.princ li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:10px}
+.princ li span{width:24px;height:24px;border-radius:50%;background:var(--escuro);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.resumo-g{display:flex;flex-wrap:wrap;gap:8px 24px;margin:14px 0 0;font-size:14px;color:var(--mudo)}
+.resumo-g b{font-size:24px;font-weight:800;color:var(--tinta);margin-right:6px;letter-spacing:-.02em}
+/* escada de propostas */
+.escada{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;align-items:end}
+.degrau{border-radius:4px;background:var(--cinza);padding:14px 14px 12px;display:flex;flex-direction:column;gap:2px}
+.degrau .a{font-size:13px;font-weight:700;color:var(--mudo)}
+.degrau .n{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--tinta)}
+.degrau .d{font-size:12px;color:var(--mudo)}
+.degrau.hoje{background:var(--escuro)}.degrau.hoje .a,.degrau.hoje .d{color:#BDBDBD}.degrau.hoje .n{color:#fff}
+.listas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.lista{border:1px solid var(--linha);border-radius:4px;padding:14px}
+.lista .a{font-size:13px;font-weight:700;color:var(--mudo);margin-bottom:8px}
+.lista .bar{display:flex;height:22px;gap:2px;margin-bottom:8px}
+.lista .bar i{display:block;height:100%}
+.lista .bar i.A{background:var(--escuro);border-radius:4px 0 0 4px}.lista .bar i.B{background:var(--vermelho);border-radius:0 4px 4px 0}
+.lista .q{display:flex;justify-content:space-between;font-size:13px;color:var(--mudo)}
+.lista .q b{font-size:18px;color:var(--tinta)}
+.lista .q b.r{color:var(--vermelho)}
+.licoes{list-style:none;margin:0;padding:0;border:1px solid var(--linha);border-radius:4px}
+.licoes li{display:grid;grid-template-columns:32px minmax(0,1fr);gap:14px;padding:14px 16px;border-top:1px solid var(--linha)}
+.licoes li:first-child{border-top:0}
+.licoes li>span{width:28px;height:28px;border-radius:50%;background:var(--vermelho);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px}
+.licoes b{display:block;color:var(--tinta);font-size:16px}
+.licoes p{margin:2px 0 0;color:var(--mudo);font-size:14px;line-height:1.5}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.cards.c3,.tiles.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{border:1px solid var(--linha);border-radius:4px;padding:16px;font-size:14px;line-height:1.5;color:var(--mudo)}
+.card h3{font-size:16px;margin:0 0 6px;color:var(--tinta)}
+.card.dest{border-color:var(--tinta);border-width:2px}
+.card .big{font-size:26px;font-weight:800;color:var(--tinta);letter-spacing:-.02em;display:block;margin:4px 0}
+.linha-tempo{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:8px;overflow-x:auto}
+.ano{border-top:3px solid var(--tinta);padding-top:8px;font-size:13px;line-height:1.45;color:var(--mudo);min-width:96px}
+.ano b{display:block;font-size:16px;color:var(--tinta);margin-bottom:4px}
+.ano .cbf{display:block;margin-top:6px;color:var(--vermelho);font-weight:600}
+.ano.fut{border-top-color:var(--antigo)}
+.pauta{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px}
+.pauta ol{list-style:none;margin:0;padding:0;border:1px solid var(--linha);border-radius:4px}
+.pauta li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;padding:12px 16px;border-top:1px solid var(--linha);font-size:14px;line-height:1.5;color:var(--mudo)}
+.pauta li:first-child{border-top:0}
+.pauta li>span{font-size:22px;font-weight:800;color:var(--tinta);line-height:1}
+.pauta li b{display:block;color:var(--tinta);font-size:15px}
+.pauta li a{color:var(--vermelho);font-weight:600;text-decoration:none;font-size:14px}
+.pauta .grupo{padding:8px 16px;background:var(--cinza);font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--mudo);display:block;grid-template-columns:none}
+.pauta .grupo.v{color:var(--vermelho)}
+.citacao{background:var(--escuro);color:#fff;border-radius:4px;padding:22px 24px;font-size:18px;line-height:1.45;font-weight:600;letter-spacing:-.01em}
+.tip{position:absolute;top:0;left:0;z-index:5;pointer-events:none;background:#000;color:#fff;font-size:13px;line-height:1.5;padding:9px 11px;border-radius:4px;max-width:240px;box-shadow:0 4px 16px rgba(0,0,0,.18);opacity:0;transition:opacity .1s}
+.tip.on{opacity:1}
+.tip b{display:block;font-size:14px;margin-bottom:2px}
+.tip i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px}
+.fonte{font-size:13px;line-height:1.5;color:var(--mudo);margin:40px 0 0;padding-top:12px;border-top:1px solid var(--linha)}
+html.em-iframe .fonte{margin-top:28px}
+@media (max-width:900px){
+  .placar{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pl:nth-child(3):before{display:none}
+  .tiles,.cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grade-wrap,.pauta{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .wrap{padding:20px max(16px,env(safe-area-inset-right,0px)) 28px max(16px,env(safe-area-inset-left,0px))}
+  .abre,.duas{grid-template-columns:1fr}
+  .metas{padding:12px}
+  .placar{grid-template-columns:1fr}
+  .pl{padding:18px 20px}
+  .pl+.pl:before{display:block!important;left:20px;right:20px;top:0;bottom:auto;width:auto;height:1px}
+  .metas .btn-link{margin-left:0}
+  .rk li,.rk.c4 li{grid-template-columns:minmax(0,1fr) auto auto;grid-template-areas:"nm v p" "tr tr tr";gap:6px 10px;padding:10px 12px}
+  .rk li{grid-template-areas:"nm nm v" "tr tr tr"}
+  .rk.c4 li{grid-template-areas:"nm v p" "tr tr tr"}
+  .rk .nm{grid-area:nm}.rk .v{grid-area:v}.rk .p{grid-area:p}.rk .tr{grid-area:tr;height:10px}
+  .cab-rk{display:none}
+  .par{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"nm dl" "bs bs"}
+  .par .nm{grid-area:nm}.par .dl{grid-area:dl}.par .bs{grid-area:bs}
+  .tiles,.cards,.cards.c3,.tiles.c3{grid-template-columns:1fr}
+  .escada{grid-template-columns:repeat(5,minmax(56px,1fr));gap:4px}
+  .degrau{padding:10px 8px}.degrau .n{font-size:28px}.degrau .d{display:none}
+  .listas{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pilha .lin{grid-template-columns:72px minmax(0,1fr)}
+  .pilha .bar i{font-size:10px}
+  .div .lin{grid-template-columns:78px minmax(0,1fr) minmax(0,1fr)}
+  .div .nm{font-size:12px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---- componentes desta página ---- */
+.fases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.fase{border-top:4px solid var(--antigo);background:var(--cinza);border-radius:0 0 4px 4px;padding:14px 16px 16px}
+.fase.ag{border-top-color:var(--vermelho);background:#fff;outline:1px solid var(--linha);outline-offset:-1px}
+.fase.fut{border-top-color:var(--tinta)}
+.fase .a{font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--tinta)}
+.fase .b{font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--vermelho);margin:8px 0 4px}
+.fase p{margin:0;font-size:14px;line-height:1.5;color:var(--mudo)}
+.agenda{list-style:none;margin:0;padding:0;border:1px solid var(--linha);border-radius:4px}
+.agenda li{display:grid;grid-template-columns:110px minmax(0,1fr) auto;gap:12px;align-items:center;padding:11px 16px;border-top:1px solid var(--linha);font-size:14px}
+.agenda li:first-child{border-top:0}
+.agenda .dt{font-weight:800;color:var(--tinta)}
+.agenda .sx{font-size:12px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;padding:3px 8px;border-radius:3px;white-space:nowrap}
+.sx.ok{background:var(--verde-bg);color:var(--verde)}.sx.cur{background:var(--cinza);color:var(--mudo)}
+.fluxo{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;counter-reset:f}
+.passo{border:1px solid var(--linha);border-radius:4px;padding:14px 14px 12px;position:relative}
+.passo .k{width:26px;height:26px;border-radius:50%;background:var(--escuro);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.passo.fim .k{background:var(--vermelho)}
+.passo b{display:block;color:var(--tinta);font-size:15px;margin-bottom:2px}
+.passo span.d{font-size:13px;line-height:1.45;color:var(--mudo)}
+.ciclos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.ciclo{border:1px solid var(--linha);border-radius:4px;padding:16px}
+.ciclo .q{font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--vermelho)}
+.ciclo h3{font-size:17px;margin:4px 0 6px;color:var(--tinta)}
+.ciclo p{margin:0;font-size:14px;line-height:1.5;color:var(--mudo)}
+.meses{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:3px}
+.meses div{text-align:center;font-size:11px;font-weight:700;color:var(--mudo)}
+.meses i{display:block;height:28px;background:var(--escuro);border-radius:3px;margin-bottom:4px}
+.meses .chk i{background:var(--vermelho)}
+.meses .chk{color:var(--vermelho)}
+.vaos{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:3px;margin-top:6px;font-size:12px;color:var(--mudo)}
+.vaos span{border-top:2px solid var(--antigo);padding-top:4px;text-align:center}
+.escadinha{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;align-items:end}
+.dg{border-radius:4px;padding:12px 14px;color:#fff;display:flex;flex-direction:column;gap:4px}
+.dg .q{font-size:12px;font-weight:700;opacity:.8}
+.dg b{font-size:16px;line-height:1.25}
+.dg small{font-size:12px;opacity:.85}
+.pilar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.pilar .card .k{font-size:44px;font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--vermelho)}
+.pilar .card .r{margin-top:10px;padding-top:10px;border-top:1px solid var(--linha);font-size:13px}
+.formula{background:var(--escuro);color:#fff;border-radius:4px;padding:20px 24px;font-size:clamp(17px,2vw,21px);font-weight:700;line-height:1.4;letter-spacing:-.01em}
+.formula span{color:var(--vermelho-claro)}
+.conta{border:1px solid var(--linha);border-radius:4px;padding:16px 18px}
+.conta .lnh{display:grid;grid-template-columns:minmax(0,1fr) 72px;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--linha);font-size:14px}
+.conta .lnh:first-child{border-top:0}
+.conta .lnh b{text-align:right;font-size:17px;color:var(--tinta)}
+.conta .barra{height:12px;background:var(--trilho);border-radius:0 4px 4px 0;margin-top:5px;position:relative}
+.conta .barra i{position:absolute;inset:0 auto 0 0;border-radius:0 4px 4px 0}
+.ok-x td{text-align:center;font-weight:800}
+.ok-x td.s{color:var(--verde)}.ok-x td.n{color:var(--fraco);font-weight:500}
+.estados{display:flex;flex-wrap:wrap;gap:8px}
+.est{border-radius:4px;padding:10px 14px;font-size:13px;color:var(--mudo);border:1px solid var(--linha);flex:1 1 160px}
+.est b{display:block;font-size:13px;letter-spacing:.5px;color:var(--tinta)}
+.est.e1 b{color:var(--verde)}.est.e2 b{color:#B07D00}.est.e3 b{color:var(--vermelho)}
+.alerta{border-left:4px solid var(--vermelho);background:var(--verm-bg);padding:14px 18px;border-radius:0 4px 4px 0;font-size:14px;line-height:1.55;color:var(--texto)}
+.alerta b{color:var(--tinta)}
+@media (max-width:900px){
+  .fluxo{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pilar,.ciclos{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .fases{grid-template-columns:1fr}
+  .agenda li{grid-template-columns:76px minmax(0,1fr);}
+  .agenda .sx{grid-column:2;justify-self:start}
+  .escadinha{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .meses div{font-size:9px}
+  .vaos{font-size:10px}
+}
+</style></head>
+<body>
+<script>if(window.parent!==window)document.documentElement.classList.add('em-iframe');</script>
+<div class="wrap" id="topo">
+  <div class="abre">
+    <h1><span>Fair Play Financeiro:</span> o balanço de 2026 e o que vem por aí</h1>
+    <p class="lede">A ANRESF, agência que aplica o Fair Play Financeiro, apresentou aos clubes o balanço do primeiro ano das regras, que foi de transição, e duas propostas: um <b>Novo PARF-B</b>, que só subsidia o clube da Série B que gasta com folha dentro do que pode pagar e paga em dia, e, a partir de 2028, <b>perda de pontos</b> nas Séries A e B para quem atrasar salários.</p>
+  </div>
+  <div class="metas">
+    <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Avaliação de 2026 · documento de discussão</span>
+    <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M16 20v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 18.5V20"/><circle cx="10" cy="8" r="3.5"/><path d="M20 20v-1.5a3.5 3.5 0 0 0-2.5-3.35M15.5 4.6a3.5 3.5 0 0 1 0 6.8"/></svg>ANRESF, CBF e clubes das Séries A e B</span>
+    <span class="chip voto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M3 12h18"/></svg>2 propostas em discussão</span>
+    <button type="button" class="btn-link" id="copiar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3.2-3.2a4.5 4.5 0 0 0-6.4-6.4L11.8 5.8"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3.2 3.2a4.5 4.5 0 0 0 6.4 6.4l1.4-1.4"/></svg><span>Copiar link</span></button>
+  </div>
+  <div class="placar" role="group" aria-label="Números-chave">
+    <div class="pl"><div class="n">104</div><div class="t">casos abertos pela ANRESF em 2026 contra clubes das Séries A e B. Houve 72 advertências públicas e 11 transfer bans</div><a href="#balanco" data-ir="balanco">Ver o balanço →</a></div>
+    <div class="pl"><div class="n">25 de 40</div><div class="t">clubes das Séries A e B tinham dívida em atraso em 30 de junho, no ano feito para arrumar as contas</div><a href="#problemas" data-ir="problemas">Ver o que não funcionou →</a></div>
+    <div class="pl"><div class="n">R$ 2,5 mi</div><div class="t">de subsídio por clube da Série B em 2027, só para quem respeitar o limite de folha e pagar em dia</div><a href="#parfb" data-ir="parfb">Ver o Novo PARF-B →</a></div>
+    <div class="pl"><div class="n">−3 pontos</div><div class="t">para o clube que começar a competição de 2028 com salários atrasados, nas Séries A e B</div><a href="#2028" data-ir="2028">Ver a proposta para 2028 →</a></div>
+  </div>
+
+  <nav class="nav" aria-label="Temas da apresentação">
+    <div class="abas" role="tablist" id="abas">
+      <button type="button" role="tab" data-aba="balanco" aria-selected="true">O que funcionou</button>
+      <button type="button" role="tab" data-aba="problemas" aria-selected="false">O que não funcionou</button>
+      <button type="button" role="tab" data-aba="parfb" aria-selected="false">Novo PARF-B (Série B) <span class="tag">proposta</span></button>
+      <button type="button" role="tab" data-aba="2028" aria-selected="false">Salários em dia em 2028 <span class="tag">proposta</span></button>
+    </div>
+  </nav>
+
+  <!-- ===================== O QUE FUNCIONOU ===================== -->
+  <section class="painel" id="p-balanco" role="tabpanel">
+    <p class="frase">Em 2026 a agência saiu do papel, cumpriu todas as datas de entrega e abriu <b>104 casos</b>. Como era ano de transição, a punição mais comum foi a <b>advertência pública</b>.</p>
+    <div class="data-linha"><span class="data">Situação em novembro de 2026</span><span>Fonte: ANRESF, Panorama da Atuação Regulatória; Regulamento do SSF (RSSF)</span></div>
+
+    <div class="secao">
+      <div class="etq">A lógica do regulamento</div>
+      <h2>Um ano para aprender, um ano que conta e, depois, as punições</h2>
+      <p class="sub">Descumprir um indicador em 2026 gera só advertência. Duas exceções já valem neste ano: atraso em dívidas assumidas a partir de 1º de janeiro e falta de entrega ou informação falsa.</p>
+      <div class="fases">
+        <div class="fase ag"><div class="a">2026</div><div class="b">Transição</div><p>Os clubes aprendem e se ajustam. O período de transição termina em 30 de novembro.</p></div>
+        <div class="fase"><div class="a">2027</div><div class="b">O primeiro ano que conta</div><p>As contas de 2027 são as primeiras avaliadas para fins de punição.</p></div>
+        <div class="fase fut"><div class="a">2028</div><div class="b">As primeiras punições</div><p>Com as contas de 2027 entregues em abril, vêm as sanções por descumprir os indicadores.</p></div>
+      </div>
+      <p class="nota">Fonte: RSSF, arts. 90 a 95 (exceções: art. 91, § 2º, e art. 90, parágrafo único).</p>
+    </div>
+
+    <div class="secao">
+      <h2>O que a ANRESF fez em 2026</h2>
+      <p class="sub">Processos e decisões nas Séries A e B, somadas.</p>
+      <div class="tiles">
+        <div class="tile"><div class="n red">104</div><div class="t">casos abertos</div><div class="d">65 encerrados, 15 em recurso e 24 em andamento</div></div>
+        <div class="tile"><div class="n">80</div><div class="t">acórdãos</div><div class="d">43 da 1ª Turma e 37 da 2ª, em 9 sessões de julgamento</div></div>
+        <div class="tile"><div class="n">29</div><div class="t">clubes alcançados</div><div class="d">14 da Série A e 15 da Série B</div></div>
+        <div class="tile"><div class="n">74</div><div class="t">autos de constatação</div><div class="d">e 73 pareceres técnicos</div></div>
+      </div>
+    </div>
+
+    <div class="secao duas">
+      <div>
+        <h2>Por que os casos foram abertos</h2>
+        <p class="sub">Metade veio do requisito de solvência, ou seja, de atrasos de pagamento.</p>
+        <ol class="rk" id="rkOrigem"></ol>
+      </div>
+      <div>
+        <h2>Como terminaram</h2>
+        <p class="sub">Sanções e desfechos. Um caso pode ter mais de um.</p>
+        <ol class="rk" id="rkSancao"></ol>
+        <p class="nota">As advertências são 90% dos acórdãos. Com o fim da transição, em 30 de novembro, a natureza das sanções muda.</p>
+      </div>
+    </div>
+
+    <div class="secao">
+      <h2>Transfer ban já em 2026: 10 dos 40 clubes</h2>
+      <p class="sub">Clubes com processo de bloqueio de registro por não pagar contratações feitas em 2026. A lista é pública, com o comunicado ou o extrato de cada decisão.</p>
+      <div class="tiles c3">
+        <div class="tile"><div class="n red">10 de 40</div><div class="t">clubes com processo de transfer ban</div></div>
+        <div class="tile"><div class="n">45 dias</div><div class="t">prazo para regularizar</div><div class="d">contados da notificação</div></div>
+        <div class="tile"><div class="n" style="font-size:22px;line-height:1.15">pagar ou acordo</div><div class="t">como sai do bloqueio</div><div class="d">pagando a dívida ou com acordo comunicado pelo credor</div></div>
+      </div>
+    </div>
+
+    <div class="secao">
+      <h2>O canal de denúncia do credor</h2>
+      <p class="sub">Desde 22 de junho de 2026, quem tem a receber registra o atraso direto na plataforma da ANRESF. Foram <b>28 denúncias</b> no ano, com <b>47 dias</b> em média entre a denúncia e a decisão.</p>
+      <div class="fluxo">
+        <div class="passo"><div class="k">1</div><b>Denúncia</b><span class="d">O credor registra o atraso na plataforma</span></div>
+        <div class="passo"><div class="k">2</div><b>Intimação</b><span class="d">A ANRESF notifica o clube devedor</span></div>
+        <div class="passo"><div class="k">3</div><b>10 dias</b><span class="d">Para o clube pagar ou se defender</span></div>
+        <div class="passo fim"><div class="k">4</div><b>Decisão</b><span class="d">Sem pagamento, bloqueio de registro</span></div>
+      </div>
+    </div>
+
+    <div class="secao">
+      <h2>A declaração do clube deixou de ser a única fonte</h2>
+      <p class="sub">A cada ciclo de solvência, o que o clube declara passou a ser conferido com outra fonte.</p>
+      <div class="ciclos">
+        <div class="ciclo"><div class="q">1º ciclo · 31 de março</div><h3>Dívida com clubes</h3><p>Os clubes credores também passaram a declarar o que têm a receber.</p></div>
+        <div class="ciclo"><div class="q">2º ciclo · 31 de julho</div><h3>Dívida com o poder público</h3><p>Os clubes passaram a enviar documentos oficiais da Receita, da PGFN e do FGTS.</p></div>
+        <div class="ciclo"><div class="q">3º ciclo · 30 de novembro</div><h3>Dívida com atletas</h3><p>Lista completa de atletas profissionais, com salário e direito de imagem informados um a um.</p></div>
+      </div>
+    </div>
+
+    <div class="secao duas">
+      <div>
+        <h2>O calendário de entregas foi cumprido</h2>
+        <p class="sub">As falhas viraram processo: 11 casos sobre demonstrações financeiras e 5 por omissão de solvência.</p>
+        <ul class="agenda">
+          <li><span class="dt">31 mar</span><span>Declaração de solvência (situação em 28/2)</span><span class="sx ok">Realizada</span></li>
+          <li><span class="dt">30 abr</span><span>Demonstrações financeiras de 2023 a 2025</span><span class="sx ok">Realizada</span></li>
+          <li><span class="dt">30 abr</span><span>Controle societário, pessoal-chave e partes relacionadas</span><span class="sx ok">Realizada</span></li>
+          <li><span class="dt">31 jul</span><span>Declaração de solvência (situação em 30/6)</span><span class="sx ok">Realizada</span></li>
+          <li><span class="dt">30 nov</span><span>Declaração de solvência (situação em 31/10)</span><span class="sx cur">Em curso</span></li>
+          <li><span class="dt">15 dez</span><span>Orçamento de 2027 (primeira entrega)</span><span class="sx cur">Em curso</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Outras entregas do ano</h2>
+        <p class="sub">Estrutura, padronização, capacitação e transparência.</p>
+        <ul class="licoes">
+          <li><span>1</span><div><b>Agência montada</b><p>Diretoria com 7 membros, 2 Turmas, Plenário, Unidade Técnica e plataforma de entrega de dados no ar.</p></div></li>
+          <li><span>2</span><div><b>Toda transferência registrada</b><p>Desde janeiro, contratos de compra e venda de atletas só vão ao BID com cronograma de pagamento e o “de acordo” do clube vendedor.</p></div></li>
+          <li><span>3</span><div><b>Uma linguagem contábil comum</b><p>Em outubro, Plano de Contas Padrão e modelo único de demonstrações, feitos com os clubes. Pela primeira vez, os números podem ser comparados linha a linha.</p></div></li>
+          <li><span>4</span><div><b>Capacitação</b><p>40 equipes de clubes treinadas em 12 estados no 1º semestre e 40 reuniões individuais no 2º.</p></div></li>
+          <li><span>5</span><div><b>Dados abertos</b><p>Painel de Solvência, Relatório de Transferências, Central de Demonstrações Financeiras e relatórios técnicos de cada clube.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== O QUE NÃO FUNCIONOU ===================== -->
+  <section class="painel" id="p-problemas" role="tabpanel" hidden>
+    <p class="frase">2026 era o ano para arrumar as contas sem risco de punição por indicadores. Segundo a ANRESF, <b>poucos clubes aproveitaram</b>.</p>
+    <div class="data-linha"><span class="data">Três problemas apontados pela agência</span><span>Fonte: ANRESF, Painel de Solvência (ciclo de julho de 2026)</span></div>
+
+    <div class="secao">
+      <div class="etq">1. Pouca adaptação</div>
+      <h2>A maioria chega a 2027 com dívida em atraso</h2>
+      <p class="sub">A partir de 2027, as contas passam a valer para punição. E o ponto de partida da maior parte dos clubes é este:</p>
+      <div class="duas">
+        <div class="caixa"><div class="resumo-g" style="margin:0 0 10px"><span><b>25 de 40</b>clubes das Séries A e B com dívida em atraso em 30 de junho de 2026</span></div><div class="meses" id="g25" aria-hidden="true" style="grid-template-columns:repeat(20,minmax(0,1fr))"></div></div>
+        <div class="caixa"><div class="resumo-g" style="margin:0 0 10px"><span><b>10 de 40</b>clubes com processo de transfer ban por não pagar contratações feitas em 2026</span></div><div class="meses" id="g10" aria-hidden="true" style="grid-template-columns:repeat(20,minmax(0,1fr))"></div></div>
+      </div>
+    </div>
+
+    <div class="secao">
+      <div class="etq">2. Antecipação de receitas</div>
+      <h2>Os clubes continuaram antecipando receitas, e de novas fontes</h2>
+      <p class="sub">Além de TV, venda de atletas e patrocínio, em 2026 apareceram antecipações de <b>bilheteria</b> e <b>sócio-torcedor</b>. Não é receita nova: é crédito com a bilheteria como garantia, e o custo dessas operações não foi divulgado.</p>
+      <ol class="rk" id="rkAntecip"></ol>
+      <p class="nota">Exemplos de antecipação de bilheteria e sócio-torcedor divulgados pela imprensa em 2026 (Máquina do Esporte, 11/11/2026; Estadão, coluna de Rodrigo Capelo). Os clubes não foram identificados na apresentação.</p>
+    </div>
+
+    <div class="secao">
+      <div class="etq">3. Salários</div>
+      <h2>O salário é mensal; a verificação, três vezes por ano</h2>
+      <p class="sub">Entre uma declaração de solvência e outra passam quatro meses, e o atraso de salário vive nesse intervalo.</p>
+      <div class="caixa" style="padding-bottom:16px">
+        <div class="leg"><span><i style="background:var(--escuro)"></i>folha devida no mês</span><span><i style="background:var(--vermelho)"></i>mês com verificação da ANRESF</span></div>
+        <div class="meses" id="gMeses"></div>
+        <div class="vaos"><span style="grid-column:1/4">até 31/3</span><span style="grid-column:4/8">4 meses</span><span style="grid-column:8/12">4 meses</span></div>
+      </div>
+      <div class="duas" style="margin-top:16px">
+        <div class="card"><h3>Série A: um problema menor</h3>Em 2026 o atraso levava, em geral, só à advertência, e a demora teve pouco efeito prático. Mas, para o monitoramento funcionar em 2027, o mecanismo terá de mudar.</div>
+        <div class="card dest"><h3>Série B: um problema real</h3>Sem acompanhamento mês a mês, a agência não consegue verificar de forma efetiva se os clubes cumprem as obrigações do PARF-B.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== NOVO PARF-B ===================== -->
+  <section class="painel" id="p-parfb" role="tabpanel" hidden>
+    <p class="frase">O PARF-B paga logística e arbitragem dos clubes da Série B. A proposta é que, a partir de 2027, o subsídio fique só com quem <b>gasta com folha dentro do que pode pagar</b>, <b>paga em dia</b> e <b>presta contas</b> com números confiáveis.</p>
+    <div class="data-linha"><span class="data">Proposta para 2027</span><span>Documento de discussão · clubes da Série B, CBF e ANRESF</span></div>
+
+    <div class="secao">
+      <h2>O que o programa paga</h2>
+      <div class="tiles">
+        <div class="tile"><div class="n red">R$ 2,5 mi</div><div class="t">subsídio estimado por clube em 2027</div><div class="d">Para um clube com receita de R$ 40 milhões, mais de um mês da folha máxima</div></div>
+        <div class="tile"><div class="n" style="font-size:24px">Logística</div><div class="t">passagens, hospedagem e transporte</div><div class="d">da delegação nas partidas da Série B</div></div>
+        <div class="tile"><div class="n" style="font-size:24px">Arbitragem</div><div class="t">taxas e despesas</div><div class="d">da arbitragem das partidas do clube</div></div>
+        <div class="tile"><div class="n" style="font-size:24px">Sem caixa</div><div class="t">a CBF paga direto aos prestadores</div><div class="d">o dinheiro não passa pelo clube</div></div>
+      </div>
+    </div>
+
+    <div class="secao">
+      <h2>Três pilares, cada um contra uma falha do modelo atual</h2>
+      <div class="pilar">
+        <div class="card"><div class="k">1</div><h3 style="margin-top:8px">Limite de folha</h3>Salários, imagem, luvas e bônus garantidos de no máximo 50% da receita prevista, com tolerância até 60%.<div class="r"><b>Responde a:</b> o controle de custo do SSF é anual e chega depois de os contratos serem assinados.</div></div>
+        <div class="card"><div class="k">2</div><h3 style="margin-top:8px">Verificação mensal</h3>Declaração de solvência todo mês, até o dia 30, com punições automáticas e painel público.<div class="r"><b>Responde a:</b> hoje há até quatro meses sem verificação e cerca de 50 dias úteis até a decisão.</div></div>
+        <div class="card"><div class="k">3</div><h3 style="margin-top:8px">Contas padronizadas</h3>Plano de Contas Padrão e modelo único de demonstrações obrigatórios para participar.<div class="r"><b>Responde a:</b> cada clube registra os mesmos fatos de forma diferente.</div></div>
+      </div>
+    </div>
+
+    <div class="secao">
+      <div class="etq">Pilar 1 · Limite de folha</div>
+      <h2>A regra</h2>
+      <div class="formula">Salários + imagem + luvas + bônus garantidos <span>≤ 50%</span> da (receita orçada + aportes comprometidos) <span style="color:#BDBDBD;font-weight:600">· tolerância até 60%</span></div>
+      <div class="cards" style="margin-top:12px">
+        <div class="card"><h3>O que entra</h3>Salários, direito de imagem, luvas e bônus garantidos de atletas e do treinador principal.</div>
+        <div class="card"><h3>O que não entra</h3>Atletas sub-20 com salário abaixo de R$ 5 mil, como estímulo à base. Custos de rescisão também ficam de fora.</div>
+        <div class="card"><h3>Como é calculado</h3>Pelo orçamento de receitas entregue em 15 de dezembro. O limite vale a partir de março de 2027.</div>
+        <div class="card dest"><h3>Acima de 60%</h3>O clube perde o custeio de logística e arbitragem e não pode registrar atletas na janela do meio do ano.</div>
+      </div>
+    </div>
+
+    <div class="secao duas">
+      <div>
+        <h2>Na prática: receita de R$ 40 milhões</h2>
+        <p class="sub">Quanto o clube pode gastar por ano, em R$ milhões.</p>
+        <div class="conta" id="conta"></div>
+        <p class="nota">Exemplo da apresentação, sem aportes. O limite do SSF (80%) inclui outros custos, como encargos, amortização de contratações e agentes.</p>
+      </div>
+      <div>
+        <h2>Pagamento por fora</h2>
+        <p class="sub">Qualquer remuneração a atleta ou membro da comissão técnica não declarada à ANRESF.</p>
+        <div class="alerta"><b>Como será identificado:</b> a ANRESF abrirá um canal de denúncia para receber informações.<br><b>Sanção:</b> exclusão do programa e devolução do subsídio já recebido.</div>
+        <h2 style="margin-top:28px">O calendário do limite</h2>
+        <ul class="agenda">
+          <li><span class="dt">15 dez 2026</span><span>Clube envia o orçamento de receitas; a ANRESF calcula e comunica o limite</span></li>
+          <li><span class="dt">jan e fev 2027</span><span>Clube ajusta o elenco ao limite</span></li>
+          <li><span class="dt">28 fev 2027</span><span>Limite em vigor: acima de 60%, sem logística e arbitragem</span></li>
+          <li><span class="dt">meio do ano</span><span>Só registra atletas novos quem ficou dentro dos 60%</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="secao">
+      <h2>Cumprir o limite não basta para cumprir o Fair Play</h2>
+      <p class="sub">O limite do PARF-B é mais estreito que o “custo com elenco” do SSF. Um clube que gasta muito com contratações ou agentes pode respeitar o limite de folha, manter o subsídio e, ainda assim, estourar os 80% do SSF e responder por isso.</p>
+      <div class="tw"><table class="ok-x"><thead><tr><th>Item de custo</th><th style="text-align:center">PARF-B (50%, até 60%)</th><th style="text-align:center">SSF (até 80%)</th></tr></thead><tbody id="tbItens"></tbody></table></div>
+      <p class="nota">Os requisitos do SSF continuam valendo para todos: <b>solvência</b> (não atrasar), <b>sustentabilidade</b> (não gastar mais do que arrecada), <b>custo com elenco</b> até 80% das receitas e <b>dívida de curto prazo</b> até 45%.</p>
+    </div>
+
+    <div class="secao">
+      <div class="etq">Pilar 2 · Verificação mensal</div>
+      <h2>Declaração todo mês, até o dia 30</h2>
+      <p class="sub">A data vem depois dos vencimentos do mês: salários CLT no 5º dia útil, direito de imagem no dia 15, FGTS, INSS e IRRF no dia 20. A declaração cobre salários de atletas, comissão técnica e demais funcionários, imagem, luvas, bônus, prêmios e o comprovante dos encargos.</p>
+      <div class="estados">
+        <div class="est e1"><b>EM DIA</b>nada vencido no mês</div>
+        <div class="est e2"><b>ATRASO PARCIAL</b>uma rubrica ou parte dos atletas</div>
+        <div class="est e3"><b>ATRASO INTEGRAL</b>a folha do mês não foi paga</div>
+      </div>
+      <h2 style="margin-top:28px">Punição automática: o exemplo da folha de março</h2>
+      <div class="escadinha" id="esc27"></div>
+      <p class="nota">Transfer ban e suspensão só caem com a regularização integral de salários, imagem e demais obrigações. A ANRESF publicará, até o fim de cada mês, um <b>painel público</b> com a situação dos 20 clubes da Série B e o histórico de 12 meses. Atletas, ex-atletas, funcionários, comissão técnica e outros clubes poderão denunciar com <b>sigilo de identidade</b>; declaração falsa é infração própria, para o clube e os dirigentes.</p>
+    </div>
+
+    <div class="secao">
+      <div class="etq">Pilar 3 · Qualidade das demonstrações</div>
+      <h2>Só participa quem fala a mesma língua contábil</h2>
+      <div class="duas">
+        <div class="card"><h3>O que a ANRESF encontrou nas contas de 2025</h3>Pouco detalhamento, classificação contábil diferente de clube para clube, falta de conciliação entre as demonstrações e notas explicativas insuficientes.</div>
+        <div class="card dest"><h3>O que passa a ser exigido</h3>Plano de Contas Padrão e modelo de demonstrações da ANRESF (Ofício nº 014/2026). É condição para entrar no programa, ao lado do limite de folha.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 2028 ===================== -->
+  <section class="painel" id="p-2028" role="tabpanel" hidden>
+    <p class="frase">A partir de 2028, nas Séries A e B, o clube que não provar que está com <b>salários e encargos em dia</b> antes da competição começa o campeonato com <b>3 pontos a menos</b>.</p>
+    <div class="data-linha"><span class="data">Proposta para 2028</span><span>Depende de mudança no Regulamento do SSF e no regulamento das competições</span></div>
+
+    <div class="secao">
+      <h2>Salário em dia vira regra de licenciamento</h2>
+      <div class="fluxo" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+        <div class="passo"><div class="k">1</div><b>Até 20 dias antes da estreia</b><span class="d">O clube entrega uma declaração de salários e encargos.</span></div>
+        <div class="passo"><div class="k">2</div><b>Todo o elenco</b><span class="d">Tudo regular com todos os atletas e a comissão técnica inscritos na competição.</span></div>
+        <div class="passo fim"><div class="k">3</div><b>Se não comprovar</b><span class="d">Começa a competição com −3 pontos.</span></div>
+      </div>
+    </div>
+
+    <div class="secao">
+      <h2>Durante a temporada, atraso também tira ponto</h2>
+      <p class="sub">A proposta endurece a escada prevista para 2027. Exemplo: a folha de março.</p>
+      <div class="escadinha" id="esc28" style="grid-template-columns:repeat(3,minmax(0,1fr))"></div>
+    </div>
+
+    <div class="secao">
+      <h2>Três janelas para se adaptar</h2>
+      <p class="sub">A regra é anunciada agora e só vale a partir de 2028.</p>
+      <div class="linha-tempo" style="grid-template-columns:repeat(4,minmax(0,1fr))">
+        <div class="ano"><b>Início de 2027</b>1ª janela: primeira chance de ajustar o elenco ao que o clube consegue pagar em dia.</div>
+        <div class="ano"><b>Meio de 2027</b>2ª janela: tempo para corrigir o que ainda não estiver ajustado.</div>
+        <div class="ano"><b>Início de 2028</b>3ª janela: a última antes de a regra valer.</div>
+        <div class="ano" style="border-top-color:var(--vermelho)"><b>2028</b><span class="cbf">Regra em vigor: elenco em dia ou −3 pontos.</span></div>
+      </div>
+    </div>
+
+    <div class="secao">
+      <h2>Na Europa, só joga quem prova que está em dia</h2>
+      <p class="sub">Exemplos levados pela ANRESF.</p>
+      <div class="tw"><table><thead><tr><th>Liga</th><th>Regra de licenciamento</th><th>Se atrasar</th><th>Caso</th></tr></thead><tbody id="tbEuropa"></tbody></table></div>
+    </div>
+  </section>
+
+  <p class="fonte">Fonte: apresentação “O Primeiro Ano de Fair Play Financeiro: uma avaliação” (ANRESF, 2026), que inclui as propostas do Novo PARF-B (clubes da Série B, CBF e ANRESF) e de aprimoramento do Fair Play Financeiro para 2028. As propostas são documentos de discussão e dependem de mudança nos regulamentos.</p>
+</div>
+<div class="tip" id="tip" role="tooltip"></div>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  function br(x,d){return x.toLocaleString('pt-BR',{minimumFractionDigits:d||0,maximumFractionDigits:d||0});}
+  function ranking(el,rows,o){o=o||{};var hi=o.max||Math.max.apply(null,rows.map(function(r){return r.v;}));
+    el.innerHTML=rows.map(function(r){var w=100*r.v/hi;
+      return '<li class="'+(r.cls||'')+'"><span class="nm">'+r.n+(r.s?'<small>'+r.s+'</small>':'')+'</span><span class="tr" aria-hidden="true"><span class="br" style="width:'+w.toFixed(2)+'%"></span></span><span class="v">'+r.txt+'</span></li>';}).join('');}
+
+  /* ---------- O que funcionou ---------- */
+  ranking($('rkOrigem'),[['Requisito de solvência',52,'dest'],['Denúncias de credores',28],['Demonstrações financeiras',11],['Omissão de solvência',5],['Monitoramento prudencial',5],['Evento de insolvência',3]]
+    .map(function(r){return {n:r[0],v:r[1],txt:r[1],cls:r[2]};}));
+  ranking($('rkSancao'),[['Advertência pública',72,'dest'],['Transfer ban',11,'','bloqueio de registro'],['Multa',6],['Arquivamento',5],['Exclusão do PARF-B',2]]
+    .map(function(r){return {n:r[0],v:r[1],txt:r[1],cls:r[2],s:r[3]};}));
+
+  /* ---------- O que não funcionou ---------- */
+  function bolinhas(el,n){var s='';for(var i=0;i<40;i++)s+='<div class="'+(i<n?'chk':'')+'"><i style="height:16px;margin:0;'+(i<n?'':'background:var(--trilho)')+'"></i></div>';el.innerHTML=s;}
+  bolinhas($('g25'),25);bolinhas($('g10'),10);
+  ranking($('rkAntecip'),[['Contrato de 5 anos',140],['Luvas, contrato de 3 anos',45],['Pagamento à vista',8.5],['Contrato até 2030',2.7]]
+    .map(function(r,i){return {n:r[0],v:r[1],txt:'R$ '+br(r[1],r[1]%1?1:0)+' mi',cls:i?'':'dest'};}));
+  var M=['JAN','FEV','MAR','ABR','MAI','JUN','JUL','AGO','SET','OUT','NOV','DEZ'],CHK={2:'31/3',6:'31/7',10:'30/11'};
+  $('gMeses').innerHTML=M.map(function(m,i){return '<div class="'+(CHK[i]?'chk':'')+'"><i></i>'+m+(CHK[i]?'<br>'+CHK[i]:'')+'</div>';}).join('');
+
+  /* ---------- Novo PARF-B ---------- */
+  var CT=[['Receita prevista',40,'var(--antigo)'],['Custo com elenco máximo no SSF (80%)',32,'var(--escuro)'],['Teto de folha com a tolerância (60%)',24,'#E86A63'],['Limite de folha (50%)',20,'var(--vermelho)']];
+  $('conta').innerHTML=CT.map(function(c){return '<div class="lnh"><div>'+c[0]+'<div class="barra"><i style="width:'+(100*c[1]/40)+'%;background:'+c[2]+'"></i></div></div><b>'+br(c[1],1)+'</b></div>';}).join('')+
+    '<div class="lnh"><div><b style="text-align:left;font-size:14px">Por mês</b></div><b style="font-size:14px;white-space:nowrap">R$ 1,67 mi</b></div>';
+  $('tbItens').innerHTML=[['Salários brutos',1,1],['Direito de imagem',1,1],['Luvas',1,1],['Bônus garantidos',1,1],['Encargos sobre salários, luvas e bônus',0,1],['Amortização de contratações',0,1],['Agentes e intermediários',0,1],['Prêmios por desempenho',0,1],['Rescisões',0,1]].map(function(r){
+    return '<tr><th>'+r[0]+'</th>'+[r[1],r[2]].map(function(v){return v?'<td class="s">✓</td>':'<td class="n">—</td>';}).join('')+'</tr>';}).join('');
+  function escada(el,ds){var cores=['#E86A63','#CB0003','#8E0002','#1A1A1A'];
+    el.innerHTML=ds.map(function(d,i){return '<div class="dg" style="background:'+cores[i+(4-ds.length)]+';min-height:'+(96+i*22)+'px"><span class="q">'+d[0]+'</span><b>'+d[1]+'</b><small>'+d[2]+'</small></div>';}).join('');}
+  escada($('esc27'),[['30 de abril','Advertência pública','30 dias após o mês'],['30 de maio','Transfer ban e suspensão do PARF-B','60 dias'],['30 de junho','Exclusão do PARF-B','90 dias'],['30 de julho','Exclusão do PARF-B de 2028','120 dias']]);
+  escada($('esc28'),[['30 de abril','Transfer ban','30 dias após o mês'],['30 de maio','Transfer ban por uma janela inteira','60 dias'],['30 de junho','−3 pontos','90 dias. Antes da 19ª rodada, na temporada em curso; depois, na seguinte']]);
+
+  /* ---------- 2028 ---------- */
+  $('tbEuropa').innerHTML=[['Itália · Serie A','Até 16 de junho, prova que pagou os salários, com monitoramento durante a temporada','Rebaixamento (perda de licença) e perda de pontos','Brescia rebaixado da Serie B em 2025'],
+    ['Espanha · LaLiga','Até 30 de junho, prova que pagou os salários','Transfer ban e rebaixamento (perda de licença)','Arenteiro rebaixado por atrasos em 2026'],
+    ['Inglaterra · Premier League e EFL','O clube que atrasa tem de se declarar à liga e entra em bloqueio imediato de registros','Transfer ban e perda de pontos','Sheffield Wednesday perdeu 18 pontos em 2025 (6 por salários)'],
+    ['Alemanha · Bundesliga','Até 15 de março, prova que tem dinheiro para pagar a temporada inteira','Perda de pontos e rebaixamento (perda de licença)','Türkgücü München perdeu 11 pontos (2022); 1860 München ficou sem licença'],
+    ['França · Ligue 1','Até 30 de junho, prova que tem dinheiro para a temporada, com relatórios trimestrais','Transfer ban, limite de folha e rebaixamento (perda de licença)','Bastia: transfer ban e rebaixamento provisório em 2024']].map(function(r){
+    return '<tr><th style="white-space:nowrap">'+r[0]+'</th><td>'+r[1]+'</td><td>'+r[2]+'</td><td class="mute">'+r[3]+'</td></tr>';}).join('');
+
+  /* ====================== abas, link e iframe ====================== */
+  var ABAS=['balanco','problemas','parfb','2028'],aba='balanco';
+  function abre(k,rolar){if(ABAS.indexOf(k)<0)k='balanco';aba=k;
+    [].forEach.call($('abas').children,function(b){b.setAttribute('aria-selected',b.dataset.aba===k);});
+    ABAS.forEach(function(a){$('p-'+a).hidden=a!==k;});
+    try{history.replaceState(null,'','#'+k);}catch(e){}
+    if(rolar){var y=document.querySelector('.nav').getBoundingClientRect().top+scrollY;
+      if(window.parent!==window)parent.postMessage({type:'liga-fpf:rolar',y:y},'*');else if(scrollY>y)scrollTo({top:y,behavior:'smooth'});}}
+  function fade(){var t=$('abas');t.parentNode.classList.toggle('mais',t.scrollLeft+t.clientWidth<t.scrollWidth-4);}
+  $('abas').addEventListener('scroll',fade);addEventListener('resize',fade);setTimeout(fade,300);
+  $('abas').addEventListener('click',function(e){var b=e.target.closest('button');if(b)abre(b.dataset.aba,true);});
+  $('abas').addEventListener('keydown',function(e){var i=ABAS.indexOf(aba);if(e.key==='ArrowRight'||e.key==='ArrowLeft'){i=(i+(e.key==='ArrowRight'?1:ABAS.length-1))%ABAS.length;abre(ABAS[i],false);$('abas').children[i].focus();}});
+  document.addEventListener('click',function(e){var a=e.target.closest('[data-ir]');if(!a)return;e.preventDefault();abre(a.dataset.ir,true);});
+  function daHash(){return location.hash.replace('#','').replace(/^aba=/,'').split('&')[0];}
+  var paginaPai=null;
+  $('copiar').addEventListener('click',function(){var base=(paginaPai||location.href).split('#')[0],url=paginaPai?base:base+'#'+aba,sp=this.querySelector('span');
+    var ok=function(){sp.textContent='Link copiado';setTimeout(function(){sp.textContent='Copiar link';},1800);};
+    if(navigator.clipboard)navigator.clipboard.writeText(url).then(ok,function(){sp.textContent=url;});else sp.textContent=url;});
+  abre(daHash(),false);
+  addEventListener('hashchange',function(){if(daHash()!==aba)abre(daHash(),false);});
+
+  /* altura automática no iframe (mesmo protocolo da página da 4ª reunião, com prefixo próprio) */
+  if(window.parent!==window){var last=0;function send(){var h=Math.ceil(document.documentElement.getBoundingClientRect().height);
+    if(h!==last){last=h;parent.postMessage({type:'liga-fpf:altura',altura:h},'*');}}
+    addEventListener('message',function(e){if(e.data&&e.data.type==='liga-fpf:pagina')paginaPai=e.data.url;});
+    parent.postMessage({type:'liga-fpf:pronto'},'*');
+    new ResizeObserver(send).observe(document.documentElement);addEventListener('load',send);setInterval(send,1000);}
+})();
+</script>
+</body></html>
